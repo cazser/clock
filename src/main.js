@@ -142,6 +142,7 @@ function paintClockPointer(){
     let hour = new Date().getHours(),
         minute = new Date().getMinutes(),
         second = new Date().getSeconds();
+    //console.log(hour);
     context.beginPath();
     context.fillStyle = '#fff';
     // 搞个阴影吧，不搞阴影太丑了。
@@ -152,7 +153,7 @@ function paintClockPointer(){
     // 先时针吧，时针得粗一点
     context.shadowOffsetX = hourShadow;
     context.shadowOffsetY = hourShadow;
-    context.rotate(degTolength(hour * 30));
+    context.rotate(degTolength(hour * 30 + ( minute/60)*30 ));
     context.fillRect(- 2.5, - hourHeight + 10, hourWidth, hourHeight);
     // 分针
     context.shadowOffsetX = minuteShadow;
