@@ -8,7 +8,7 @@ const radius = 4, // 指数圈半径
     hourShadow = 2; // 时针阴影
     minuteWidth = 3, // 分针宽度
     minuteHeight = 68, // 分针高度
-    minuteShadow = 1; // 分针阴影
+    minuteShadow = 1, // 分针阴影
     secondWidth = 1, // 秒针宽度
     secondHeight = 80, // 秒针高度
     secondShadow = 0.5; // 秒针阴影
@@ -51,8 +51,8 @@ function paintClockBorder(){
     context.arc(100, 100, radius1, 0, 2 * Math.PI, false);
     // 调个白变黑渐变色
     var fTo0 = context.createLinearGradient(-50, 100, 200, 100);
-    fTo0.addColorStop(0, '#56f');
-    fTo0.addColorStop(1, '#359');
+    fTo0.addColorStop(0, '#ffffff');
+    fTo0.addColorStop(1, '#0000ff');
     // 第一个最外面的圈圈搞定
     context.fillStyle = fTo0;
     context.fill();
@@ -62,7 +62,7 @@ function paintClockBorder(){
     // 搞个黑灰渐变色
     var bTod = context.createLinearGradient(10, 100, 190, 100);
     bTod.addColorStop(0, '#000');
-    bTod.addColorStop(1, '#304525');
+    bTod.addColorStop(1, '#307505');
     context.fillStyle = bTod;
     context.fill();
     // 终于搞第三个圈圈了
@@ -153,6 +153,7 @@ function paintClockPointer(){
     // 先时针吧，时针得粗一点
     context.shadowOffsetX = hourShadow;
     context.shadowOffsetY = hourShadow;
+    console.log(hour * 30 + ( minute/60)*30);
     context.rotate(degTolength(hour * 30 + ( minute/60)*30 ));
     context.fillRect(- 2.5, - hourHeight + 10, hourWidth, hourHeight);
     // 分针
@@ -168,7 +169,7 @@ function paintClockPointer(){
     // 圆心画个小黑点吧
     context.beginPath();
     context.arc(0 ,0 ,1 ,0, 2 * Math.PI, false);
-    context.fillStyle = '#000';
+    context.fillStyle = '#005263';
 }
 
 function paintClock(){
