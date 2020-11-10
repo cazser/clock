@@ -39,7 +39,8 @@ function cos(num){
  * 度数转弧度
  */
 function degTolength(num){
-    return num * (2 * Math.PI / 360);
+    return num *Math.PI/180;
+
 }
 
 /**
@@ -51,7 +52,7 @@ function paintClockBorder(){
     context.arc(100, 100, radius1, 0, 2 * Math.PI, false);
     // 调个白变黑渐变色
     var fTo0 = context.createLinearGradient(-50, 100, 200, 100);
-    fTo0.addColorStop(0, '#ffffff');
+    fTo0.addColorStop(0, '#aa0000');
     fTo0.addColorStop(1, '#0000ff');
     // 第一个最外面的圈圈搞定
     context.fillStyle = fTo0;
@@ -150,21 +151,21 @@ function paintClockPointer(){
     context.shadowColor = '#B97C29';
     // 先把画布原点换到圆心，因为得绕中心旋转
     context.translate(radius1, radius1);
-    // 先时针吧，时针得粗一点
+    // 时针吧，时针得粗一点
     context.shadowOffsetX = hourShadow;
     context.shadowOffsetY = hourShadow;
-    console.log(hour * 30 + ( minute/60)*30);
     context.rotate(degTolength(hour * 30 + ( minute/60)*30 ));
     context.fillRect(- 2.5, - hourHeight + 10, hourWidth, hourHeight);
     // 分针
     context.shadowOffsetX = minuteShadow;
     context.shadowOffsetY = minuteShadow;
-    context.rotate(degTolength( - hour * 30 + minute * 6));
+    //console.log(minute*6);
+    context.rotate(degTolength( minute*6 - (hour * 30 + ( minute/60)*30 )));
     context.fillRect(- 2.5, - minuteHeight + 10, minuteWidth, minuteHeight);
     //秒针
     context.shadowOffsetX = secondShadow;
     context.shadowOffsetY = secondShadow;
-    context.rotate(degTolength(- ( - hour * 30 + minute * 6) + second * 6));
+    context.rotate(degTolength( second * 6  - ( minute*6 - (hour * 30 + ( minute/60)*30 ))  ));
     context.fillRect(- 2.5, - secondHeight + 10, secondWidth, secondHeight);
     // 圆心画个小黑点吧
     context.beginPath();
