@@ -143,6 +143,7 @@ function paintClockPointer(){
     let hour = new Date().getHours(),
         minute = new Date().getMinutes(),
         second = new Date().getSeconds();
+    //console.log(second);
     //console.log(hour);
     context.beginPath();
     context.fillStyle = '#fff';
@@ -165,7 +166,7 @@ function paintClockPointer(){
     //秒针
     context.shadowOffsetX = secondShadow;
     context.shadowOffsetY = secondShadow;
-    context.rotate(degTolength( second * 6  - ( minute*6 - (hour * 30 + ( minute/60)*30 ))  ));
+    context.rotate(degTolength( second * 6  -  minute*6 - (hour * 30 + ( minute/60)*30 ) -60 ));
     context.fillRect(- 2.5, - secondHeight + 10, secondWidth, secondHeight);
     // 圆心画个小黑点吧
     context.beginPath();
