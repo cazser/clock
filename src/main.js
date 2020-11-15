@@ -164,9 +164,15 @@ function paintClockPointer(){
     context.rotate(degTolength( minute*6 - (hour * 30 + ( minute/60)*30 )));
     context.fillRect(- 2.5, - minuteHeight + 10, minuteWidth, minuteHeight);
     //秒针
+    context.beginPath();
+    context.fillStyle = '#fff';
+    // 搞个阴影吧，不搞阴影太丑了。
+    context.shadowBlur = 4;
+    context.shadowColor = '#B97C29';
     context.shadowOffsetX = secondShadow;
     context.shadowOffsetY = secondShadow;
-    context.rotate(degTolength( second * 6  -  minute*6 - (hour * 30 + ( minute/60)*30 ) -60 +6));
+    console.log(second*6);
+    context.rotate(degTolength( second * 6 - minute*6));
     context.fillRect(- 2.5, - secondHeight + 10, secondWidth, secondHeight);
     // 圆心画个小黑点吧
     context.beginPath();
